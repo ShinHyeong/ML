@@ -29,8 +29,8 @@ import numpy as np
 ### 1. import file
 
 #### [input1] file of 5-vectors
-첫번째 input은 5-vector들이 나열되어 있는 파일입니다.
-파일을 읽기 오기 위해 해당 파일의 주소를 입력받습니다.
+* 첫번째 input은 5-vector들이 나열되어 있는 파일입니다.
+* 파일을 읽기 오기 위해 해당 파일의 주소를 입력받습니다.
 
 ```python
 fileAdr = input("input할 파일의 주소를 입력하시오 : ")
@@ -38,8 +38,8 @@ file = pd.read_csv(fileAdr, encoding="utf-8", sep=' ', header=None)
 ```
 
 ### 2. Data Preprocessing
-*5-vectors외의 값은 모두 삭제합니다.
-*dataframe인 file을 numpy.ndarray로 바꿔줍니다.
+* 5-vectors외의 값은 모두 삭제합니다.
+* dataframe인 file을 numpy.ndarray로 바꿔줍니다.
 
 ```python
 file = file[[0, 1, 2, 3, 4]]
@@ -49,21 +49,21 @@ file = file.to_numpy()
 ### 3. K-means Clustering Algorithm
 
 #### [input2] cluster갯수(k)
-두번째 input으로 몇 개의 cluster로 clustering할 지 입력받습니다.
+* 두번째 input으로 몇 개의 cluster로 clustering할 지 입력받습니다.
 
 ```python
 k = int(input("몇 개의 cluster로 clustering할 건가요? : "))
 ```
 
 #### [input3] the maximum number of iterations
-세번째 input으로 몇 번의 iteration을 수행할 것인지 입력받습니다.
+* 세번째 input으로 몇 번의 iteration을 수행할 것인지 입력받습니다.
 
 ```python
 iter_max = int(input("몇 번 iteration(반복)할 건가요? : "))
 ```
 
 #### L5-Norm
-5차원에서 두 점 a,b 사이의 거리를 구하는 함수입니다.
+* 5차원에서 두 점 a,b 사이의 거리를 구하는 함수입니다.
 
 ```python
 def distance(a, b):
@@ -71,7 +71,7 @@ def distance(a, b):
 ```  
 
 ### 1) initial list of k group representative vectors (cntrds[0],..,cntrds[k-1])
-랜덤으로 좌표(cntrds_1, cntrds_2, cntrds_3, cntrds_4, cntrds_5) k개를 생성합니다.
+* 랜덤으로 좌표(cntrds_1, cntrds_2, cntrds_3, cntrds_4, cntrds_5) k개를 생성합니다.
 
 ```python
 cntrds_1= np.random.uniform(min(file[:,0]), max(file[:,0]), k)
@@ -86,10 +86,10 @@ cntrds = df_cntrds.to_numpy() #dataframe to numpy.ndarray
 ```
 
 ### 2) Partitioning the 5-vectors into k groups
-*data.column에 "labels"를 추가하기 위해서 for루프를 돌음
-+해당 데이터로부터 각 group representative vector의 거리를 element로 가지는 벡터 distances를 0으로 초기화
-+cluster에 벡터 distances의 element 중 가장 작은 값의 index를 저장
-+즉, cluster는 각 데이터와 가장 가까운 group representative vector의 index
+* data.column에 "labels"를 추가하기 위해서 for루프를 돌음
++ 해당 데이터로부터 각 group representative vector의 거리를 element로 가지는 벡터 distances를 0으로 초기화
++ cluster에 벡터 distances의 element 중 가장 작은 값의 index를 저장
++ 즉, cluster는 각 데이터와 가장 가까운 group representative vector의 index
 
 ```python
 labels = np.zeros(file.shape[0])
@@ -103,11 +103,11 @@ for i in range(file.shape[0]):
 ```
 
 ### 3) Update representatives      
-*각 그룹별 해당하는 벡터들을 알기위해서 for루프를 돌음
-+k group representative vectors의 index와 각 데이터의 clust가 일치하는 데이터 추출
-+해당 그룹에 속하는 데이터가 아예 없을 경우 pass
-+list로 저장된, 해당 그룹의 points를 array로 변환
-+기존 group representative vector을 해당 그룹의 points의 평균으로 변경
+* 각 그룹별 해당하는 벡터들을 알기위해서 for루프를 돌음
++ k group representative vectors의 index와 각 데이터의 clust가 일치하는 데이터 추출
++ 해당 그룹에 속하는 데이터가 아예 없을 경우 pass
++ list로 저장된, 해당 그룹의 points를 array로 변환
++ 기존 group representative vector을 해당 그룹의 points의 평균으로 변경
 
 ```python
 for n in range(k):
@@ -121,7 +121,7 @@ for n in range(k):
 ```
 
 ### 4) iteration
-위에 있는 2)~3) 과정을 입력받은 iteration횟수만큼 반복합니다.
+* 위에 있는 2)~3) 과정을 입력받은 iteration횟수만큼 반복합니다.
 
 ```python
 for iter in range(iter_max+1):
@@ -141,9 +141,9 @@ print(tuple(cntrds[k-1]))
 ```
 
 #### [output2] # of vectors in each cluster
-+k group representative vectors의 index와 각 데이터의 clust가 일치하는 데이터 추출
-+해당 그룹에 속하는 데이터가 아예 없을 경우 pass
-+list로 저장된, 해당 그룹의 points를 array로 변환
++ k group representative vectors의 index와 각 데이터의 clust가 일치하는 데이터 추출
++ 해당 그룹에 속하는 데이터가 아예 없을 경우 pass
++ list로 저장된, 해당 그룹의 points를 array로 변환
 
 ```python
 for n in range(k):
