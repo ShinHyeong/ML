@@ -28,7 +28,7 @@ import numpy as np
 
 ### 1. import file
 
-#### [input1] file of 5-vectors
+>#### [input1] file of 5-vectors
 * 첫번째 input은 5-vector들이 나열되어 있는 파일입니다.
 * 파일을 읽기 오기 위해 해당 파일의 주소를 입력받습니다.
 
@@ -48,14 +48,14 @@ file = file.to_numpy()
 
 ### 3. K-means Clustering Algorithm
 
-#### [input2] cluster갯수(k)
+>#### [input2] cluster갯수(k)
 * 두번째 input으로 몇 개의 cluster로 clustering할 지 입력받습니다.
 
 ```python
 k = int(input("몇 개의 cluster로 clustering할 건가요? : "))
 ```
 
-#### [input3] the maximum number of iterations
+>#### [input3] the maximum number of iterations
 * 세번째 input으로 몇 번의 iteration을 수행할 것인지 입력받습니다.
 
 ```python
@@ -134,7 +134,7 @@ for iter in range(iter_max+1):
 
 ### 4. Outputs
 
-#### [output1] the centroids of each cluster
+>#### [output1] the centroids of each cluster
 * 각 cluster별로 속한 centroid를 출력합니다.
 ```python
 print("# of actual iterations : %d"%iter_max)
@@ -144,7 +144,7 @@ for n in range(k-1):
 print(tuple(cntrds[k-1]))
 ```
 
-#### [output2] # of vectors in each cluster
+>#### [output2] # of vectors in each cluster
 * 각 cluster별로 속한 데이터의 갯수를 출력합니다.
   + k group representative vectors의 index와 각 데이터의 clust가 일치하는 데이터를 추출합니다.
     - 해당 그룹에 속하는 데이터가 아예 없을 경우 pass
