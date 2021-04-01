@@ -28,7 +28,7 @@ import numpy as np
 
 ### 1. import file
 
-##### [input1] file of 5-vectors
+#### [input1] file of 5-vectors
 첫번째 input은 5-vector들이 나열되어 있는 파일입니다.
 파일을 읽기 오기 위해 해당 파일의 주소를 입력받습니다.
 
@@ -48,21 +48,21 @@ file = file.to_numpy()
 
 ### 3. K-means Clustering Algorithm
 
-##### [input2] cluster갯수(k)
+#### [input2] cluster갯수(k)
 두번째 input으로 몇 개의 cluster로 clustering할 지 입력받습니다.
 
 ```python
 k = int(input("몇 개의 cluster로 clustering할 건가요? : "))
 ```
 
-##### [input3] the maximum number of iterations
+#### [input3] the maximum number of iterations
 세번째 input으로 몇 번의 iteration을 수행할 것인지 입력받습니다.
 
 ```python
 iter_max = int(input("몇 번 iteration(반복)할 건가요? : "))
 ```
 
-##### L5-Norm
+#### L5-Norm
 5차원에서 두 점 a,b 사이의 거리를 구하는 함수입니다.
 
 ```python
@@ -70,7 +70,7 @@ def distance(a, b):
   return sum([abs(a_col - b_col)**5  for a_col, b_col in list(zip(a, b))]) ** 0.2
 ```  
 
-#### 1) initial list of k group representative vectors (cntrds[0],..,cntrds[k-1])
+### 1) initial list of k group representative vectors (cntrds[0],..,cntrds[k-1])
 랜덤으로 좌표(cntrds_1, cntrds_2, cntrds_3, cntrds_4, cntrds_5) k개를 생성합니다.
 
 ```python
@@ -85,7 +85,7 @@ df_cntrds = pd.DataFrame(cntrds)
 cntrds = df_cntrds.to_numpy() #dataframe to numpy.ndarray
 ```
 
-#### 2) Partitioning the 5-vectors into k groups
+### 2) Partitioning the 5-vectors into k groups
 *data.column에 "labels"를 추가하기 위해서 for루프를 돌음
 +해당 데이터로부터 각 group representative vector의 거리를 element로 가지는 벡터 distances를 0으로 초기화
 +cluster에 벡터 distances의 element 중 가장 작은 값의 index를 저장
@@ -102,7 +102,7 @@ for i in range(file.shape[0]):
        labels[i] = int(cluster)
 ```
 
-#### 3) Update representatives      
+### 3) Update representatives      
 *각 그룹별 해당하는 벡터들을 알기위해서 for루프를 돌음
 +k group representative vectors의 index와 각 데이터의 clust가 일치하는 데이터 추출
 +해당 그룹에 속하는 데이터가 아예 없을 경우 pass
@@ -120,7 +120,7 @@ for n in range(k):
         cntrds[n] = np.mean(points, axis=0)
 ```
 
-#### 4) iteration
+### 4) iteration
 위에 있는 2)~3) 과정을 입력받은 iteration횟수만큼 반복합니다.
 
 ```python
@@ -130,7 +130,7 @@ for iter in range(iter_max+1):
 
 ### Outputs
 
-##### [output1] the centroids of each cluster
+#### [output1] the centroids of each cluster
 
 ```python
 print("# of actual iterations : %d"%iter_max)
@@ -140,7 +140,7 @@ for n in range(k-1):
 print(tuple(cntrds[k-1]))
 ```
 
-##### [output2] # of vectors in each cluster
+#### [output2] # of vectors in each cluster
 +k group representative vectors의 index와 각 데이터의 clust가 일치하는 데이터 추출
 +해당 그룹에 속하는 데이터가 아예 없을 경우 pass
 +list로 저장된, 해당 그룹의 points를 array로 변환
