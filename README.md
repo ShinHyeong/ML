@@ -1,7 +1,7 @@
 # K-means Clustering Algorithm of 5-vectors
 
 이미 작성되어 있는 k-means clustering 관련 library함수를 쓰지 않고
-python으로 k-means clustering algorithm을 직접 구현했습니다.
+*python* 으로 k-means clustering algorithm을 직접 구현했습니다.
 
 #### K-means Clustering Algorithm of 5-vectors은 다음과 같은 과정을 수행합니다.
 
@@ -9,8 +9,8 @@ python으로 k-means clustering algorithm을 직접 구현했습니다.
 
 1. 데이터값을 바탕으로 임의의 k개의 group representative vectors, 즉 centroids를 지정합니다.
 2. 입력받은 iteration횟수만큼 다음 과정을 반복합니다.
-  * 각 데이터를 그와 가장 가까운 centriod가 속한 cluster에 할당합니다.
-  * 각 cluster별 centroid를 할당된 데이터들의 평균으로 update합니다.
+   * 각 데이터를 그와 가장 가까운 centriod가 속한 cluster에 할당합니다.
+   * 각 cluster별 centroid를 할당된 데이터들의 평균으로 update합니다.
  
 centriods와 각 cluster별로 속한 데이터의 갯수(# of vectors in each cluster)를 출력합니다.
 
@@ -79,6 +79,7 @@ def distance(a, b):
 ### 1) initial list of k group representative vectors (cntrds[0],..,cntrds[k-1])
 * 데이터값을 바탕으로 k개의 임의의 group representative vectors, 즉 centroids를 지정합니다.
 * centroid는 (cntrds_1, cntrds_2, cntrds_3, cntrds_4, cntrds_5)로 이루어져있습니다.
+
   + 변수 cntrds_?은 각 데이터(5-vector)의 ?번째 속성(element)에 대한 값들의 최소~최대 범위에서 정한 k개의 랜덤한 수들을 의미합니다.
 
 ```python
@@ -103,6 +104,7 @@ for iter in range(iter_max+1):
 
 ### 2-1) Partitioning the 5-vectors into k groups
 * 각 데이터(5-vector)를 그와 가장 가까운 centriod가 속한 cluster에 할당합니다.
+
   + 변수 labels에 각 데이터가 속한 cluster의 index를 저장하기 위해서 for루프를 수행합니다.
     - 변수 distances는 해당 데이터로부터 각 cluster의 centroid의 거리를 element로 가짐
     - 변수 cluster는 distances의 element 중 가장 작은 값의 index를 저장함
@@ -121,6 +123,7 @@ for i in range(file.shape[0]):
 
 ### 2-2) Update representatives
 * 각 cluster별 centroid를, 해당 cluster에 할당된 데이터들의 평균(mean of 5-vectors in each cluster)으로 update합니다.
+
   + 각 cluster에 속한 데이터(5-vectors in each cluster)을 알기위해서 for루프를 수행합니다.
     - 각 centroid의 index와 각 데이터가 속한 cluster의 index(변수 cluster)가 일치하는 데이터(5-vectors)를 추출함
   + 기존 centroid를 해당 cluster에 할당된 데이터들의 평균(mean of 5-vectors in each cluster)으로 변경합니다.
@@ -153,10 +156,11 @@ print(tuple(cntrds[k-1]))
 
 >#### [output2] # of vectors in each cluster
 >* 각 cluster별로 속한 데이터의 갯수를 출력합니다.
->  + 각 cluster에 속한 데이터(5-vectors in each cluster)을 알기위해서 for루프를 수행합니다.
->    - 각 centroid의 index와 각 데이터가 속한 cluster의 index(변수 cluster)가 일치하는 데이터(5-vectors)를 추출함
->  + 이를 통해 구한, 각 cluster별로 속한 데이터의 갯수를 출력합니다.
->    - 만약 해당 cluster에 데이터가 없다면 0개라고 출력
+>
+>    + 각 cluster에 속한 데이터(5-vectors in each cluster)을 알기위해서 for루프를 수행합니다.
+>      - 각 centroid의 index와 각 데이터가 속한 cluster의 index(변수 cluster)가 일치하는 데이터(5-vectors)를 추출함
+>    + 이를 통해 구한, 각 cluster별로 속한 데이터의 갯수를 출력합니다.
+>      - 만약 해당 cluster에 데이터가 없다면 0개라고 출력
 
 ```python
 for n in range(k):
